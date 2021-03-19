@@ -32,15 +32,6 @@ public class AppTest
 
     @Before
     public void setup(){
-        Validator<Student> studentValidator = new StudentValidator();
-        Validator<Nota> notaValidator = new NotaValidator();
-        Validator<Tema> temaValidator = new TemaValidator();
-
-        studentRepo = new StudentXMLRepository(studentValidator, "testing/studenti.xml");
-        notaRepo = new NotaXMLRepository(notaValidator, "testing/note.xml");
-        temaRepo = new TemaXMLRepository(temaValidator, "testing/teme.xml");
-        service = new Service(studentRepo,temaRepo,notaRepo);
-
         try {
             String defaultFileContent = new String(Files.readAllBytes(Paths.get("testing/empty-studenti.xml")), StandardCharsets.UTF_8);
 
@@ -52,6 +43,14 @@ public class AppTest
             e.printStackTrace();
         }
 
+        Validator<Student> studentValidator = new StudentValidator();
+        Validator<Nota> notaValidator = new NotaValidator();
+        Validator<Tema> temaValidator = new TemaValidator();
+
+        studentRepo = new StudentXMLRepository(studentValidator, "testing/studenti.xml");
+        notaRepo = new NotaXMLRepository(notaValidator, "testing/note.xml");
+        temaRepo = new TemaXMLRepository(temaValidator, "testing/teme.xml");
+        service = new Service(studentRepo,temaRepo,notaRepo);
     }
 
     @Test
@@ -70,5 +69,35 @@ public class AppTest
         assertNull(s);
     }
 
+    @Test
+    public void TC1_EC_Valid(){
+        assertEquals(1, service.saveStudent("2","Andy", 331));
+    }
+
+    @Test
+    public void TC1_EC_InValid(){
+        assertEquals(0, service.saveStudent(null,"Andy", 331));
+    }
+
+    @Test
+    public void TC2_EC_Valid(){
+        assertEquals(1, service.saveStudent("3","Sam", 132));
+    }
+
+    @Test
+    public void TC2_EC_InValid(){
+        assertEquals(1, service.saveStudent("3","Sam", 132));
+        assertEquals(0, service.saveStudent("3","Sam", 132));
+    }
+
+    @Test
+    public void TC3_EC_Valid(){
+        assertEquals(1, service.saveStudent("4","Smith", 132));
+    }
+
+    @Test
+    public void TC3_EC_InValid(){
+        assertEquals(0, service.saveStudent("4","", 132));
+    }
 
 }
