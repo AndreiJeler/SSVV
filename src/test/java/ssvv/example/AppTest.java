@@ -51,7 +51,6 @@ public class AppTest
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Test
@@ -70,6 +69,36 @@ public class AppTest
         assertNull(s);
     }
 
+    @Test
+    public void TC1_EC_Valid(){
+        assertEquals(1, service.saveStudent("2","Andy", 331));
+    }
+
+    @Test
+    public void TC1_EC_InValid(){
+        assertEquals(0, service.saveStudent(null,"Andy", 331));
+    }
+
+    @Test
+    public void TC2_EC_Valid(){
+        assertEquals(1, service.saveStudent("3","Sam", 132));
+    }
+
+    @Test
+    public void TC2_EC_InValid(){
+        assertEquals(1, service.saveStudent("3","Sam", 132));
+        assertEquals(0, service.saveStudent("3","Sam", 132));
+    }
+
+    @Test
+    public void TC3_EC_Valid(){
+        assertEquals(1, service.saveStudent("4","Smith", 132));
+    }
+
+    @Test
+    public void TC3_EC_InValid(){
+        assertEquals(0, service.saveStudent("4","", 132));
+    }
     @Test
     public void TC7_EC_Valid(){
         int r = service.saveStudent("7","Emi",933);
