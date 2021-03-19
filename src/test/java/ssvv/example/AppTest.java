@@ -70,5 +70,45 @@ public class AppTest
         assertNull(s);
     }
 
+    @Test
+    public void TC7_EC_Valid(){
+        int r = service.saveStudent("7","Emi",933);
+        assertEquals(933,studentRepo.findOne("7").getGrupa());
+    }
 
+    @Test
+    public void  TC6_EC_Valid(){
+        int r = service.saveStudent("6","Stef",934);
+        assertTrue(studentRepo.findOne("6").getGrupa() < 938);
+    }
+
+    @Test
+    public void TC6_EC_Invalid(){
+        int r = service.saveStudent("6","Stef",934);
+        assertFalse(studentRepo.findOne("6").getGrupa() > 938);
+    }
+
+    @Test
+    public void TC5_EC_Valid(){
+        int r = service.saveStudent("5","Stef",931);
+        assertTrue(studentRepo.findOne("5").getGrupa() > 110);
+    }
+
+    @Test
+    public void TC5_EC_Invalid() {
+        int r = service.saveStudent("5", "Stef", 100);
+        assertEquals(0, r);
+    }
+
+    @Test
+    public void TC4_EC_Valid(){
+        int r = service.saveStudent("4","Andrei Bo$$", 934);
+        assertEquals(1,r);
+    }
+
+    @Test
+    public void TC4_EC_Invalid(){
+        int r = service.saveStudent("4","Andrei Bo$$",  0);
+        assertEquals(0,r);
+    }
 }
