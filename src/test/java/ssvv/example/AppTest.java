@@ -114,7 +114,7 @@ public class AppTest {
     }
 
     @Test
-    public void TC6_EC_Invalid() {
+    public void TC6_EC_InValid() {
         int r = service.saveStudent("6", "Stef", 934);
         assertFalse(studentRepo.findOne("6").getGrupa() > 938);
     }
@@ -126,7 +126,7 @@ public class AppTest {
     }
 
     @Test
-    public void TC5_EC_Invalid() {
+    public void TC5_EC_InValid() {
         int r = service.saveStudent("5", "Stef", 100);
         assertEquals(0, r);
     }
@@ -138,7 +138,7 @@ public class AppTest {
     }
 
     @Test
-    public void TC4_EC_Invalid() {
+    public void TC4_EC_InValid() {
         int r = service.saveStudent("4", "Andrei Bo$$", 0);
         assertEquals(0, r);
     }
