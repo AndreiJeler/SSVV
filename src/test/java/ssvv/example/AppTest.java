@@ -115,8 +115,8 @@ public class AppTest {
 
     @Test
     public void TC6_EC_InValid() {
-        int r = service.saveStudent("6", "Stef", 934);
-        assertFalse(studentRepo.findOne("6").getGrupa() > 938);
+        int r = service.saveStudent("6", "Stef", 950);
+        assertEquals(0, r);
     }
 
     @Test
