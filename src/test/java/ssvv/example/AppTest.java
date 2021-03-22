@@ -161,4 +161,28 @@ public class AppTest {
         int r = service.saveStudent(null, null, 1000);
         assertEquals(0,r);
     }
+
+    @Test
+    public void TC1_BVA() {
+        int r = service.saveStudent("1", "John", 110);
+        assertEquals(0,r);
+    }
+
+    @Test
+    public void TC2_BVA() {
+        int r = service.saveStudent("1", "John", 111);
+        assertEquals(1,r);
+    }
+
+    @Test
+    public void TC3_BVA() {
+        int r = service.saveStudent("1", "John", 937);
+        assertEquals(1,r);
+    }
+
+    @Test
+    public void TC4_BVA() {
+        int r = service.saveStudent("1", "John", 938);
+        assertEquals(0,r);
+    }
 }
