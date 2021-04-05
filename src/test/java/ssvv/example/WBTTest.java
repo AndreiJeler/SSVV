@@ -71,4 +71,60 @@ import java.nio.file.Paths;
     public void test2(){
         assertEquals(0, service.saveTema("", "Assignment 2", 10, 2));
     }
+
+    @Test
+    public void tc1_wbt() {
+        assertEquals(0, service.saveTema("", "desc", 10, 2));
+    }
+
+    @Test
+    public void tc2_wbt() {
+        assertEquals(0, service.saveTema("100", "", 5, 3));
+    }
+
+    @Test
+    public void tc3_wbt() {
+        assertEquals(0, service.saveTema("101", "descript", -1, 5));
+    }
+
+    @Test
+    public void tc4_wbt() {
+        assertEquals(0, service.saveTema("102", "d", 10, 16));
+    }
+
+    @Test
+    public void tc5_wbt() {
+        assertEquals(1, service.saveTema("100", "abc", 4, 3));
+        assertEquals(0, service.saveTema("100", "abc", 4, 3));
+    }
+
+    @Test
+    public void tc6_wbt() {
+        assertEquals(1, service.saveTema("105", "xyz", 2, 1));
+    }
+
+    @Test
+    public void tc7_wbt() {
+        assertEquals(0, service.saveTema("101", "descript", 20, 5));
+    }
+
+    @Test
+    public void tc8_wbt() {
+        assertEquals(0, service.saveTema("102", "d", 10, -16));
+    }
+
+    @Test
+    public void tc9_wbt() {
+        assertEquals(0, service.saveTema("110", "asd", 2, 3));
+    }
+
+    @Test
+    public void tc10_wbt() {
+        assertEquals(0, service.saveTema(null, "desc", 10, 2));
+    }
+
+    @Test
+    public void tc11_wbt() {
+        assertEquals(0, service.saveTema(null, "", 5, 3));
+    }
 }
