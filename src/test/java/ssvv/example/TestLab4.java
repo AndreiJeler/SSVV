@@ -68,25 +68,46 @@ public class TestLab4 {
     }
 
     @Test
-    public void test_addStudent(){
+    public void test_addStudent() {
         assertEquals(1, service.saveStudent("2", "Andy", 331));
     }
 
     @Test
-    public void test_addAssignment(){
+    public void test_addAssignment() {
         assertEquals(1, service.saveTema("1", "Assignment 1", 10, 2));
     }
 
     @Test
-    public void test_addGrade(){
+    public void test_addGrade() {
         assertEquals(-1, service.saveNota("", "", 10, 2, "feedback"));
     }
 
     @Test
-    public void test_integration(){
+    public void test_integration() {
         assertEquals(1, service.saveStudent("2", "Andy", 331));
         assertEquals(1, service.saveTema("1", "Assignment 1", 10, 2));
-        assertEquals(1,service.saveNota("2","1",10, 10, "Good"));
+        assertEquals(1, service.saveNota("2", "1", 10, 10, "Good"));
+    }
+
+    @Test
+    public void incremental_addStudent() {
+        assertEquals(1, service.saveStudent("1", "Elev", 934));
+    }
+
+    @Test
+    public void incremental_addAssignment() {
+        //incremental_addStudent();
+        assertEquals(1, service.saveStudent("1", "Elev", 934));
+        assertEquals(1, service.saveTema("1", "Assignment", 3, 1));
+    }
+
+    @Test
+    public void incremental_addGrade() {
+        //incremental_addAssignment();
+        assertEquals(1, service.saveStudent("1", "Elev", 934));
+        assertEquals(1, service.saveTema("1", "Assignment", 3, 1));
+        assertEquals(1, service.saveNota("1", "1", 8, 4, "Late"));
+
     }
 
 }
